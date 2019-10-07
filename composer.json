@@ -3,6 +3,9 @@
     "description": "orelien is simple web flamework.",
     "license": "MIT",
     "autoload": {
+        "psr-4": {
+            "Orelien\\": "src/"
+        },
         "files": [
             "src/functions.php"
         ]
