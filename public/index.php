@@ -6,16 +6,15 @@ $routes = require __DIR__ . '/../app/routes.php';
 
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if (isset($routes[$request_uri])) {
-    $f = $routes[$request_uri];
+$not_found = function (): array {
+    return [404, ['Content-Type' => 'text/html'], "<h1>404 Not found</h1>"];
+};
 
-    [$status, $headers, $body] = f();
-    http_response_code($status);
-    foreach ($header as $name => $h) {
-        header("{$name}: {$h}");
-    }
-    echo $body;
-} else {
-    http_response_code(404);
-    echo "<h1>404 Not found</h1>";
+$f = $routes[$request_uri] ?? $not_found;
+
+[$status, $headers, $body] = $f();
+http_response_code($status);
+foreach ($headers as $name => $h) {
+    header("{$name}: {$h}");
 }
+echo $body;
