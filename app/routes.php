@@ -6,7 +6,10 @@ $routes['/'] = function () use ($template): array {
     return [
         200,
         ['Content-Type' => 'text/html'],
-        $template->create('index', ['name' => 'ぶた'])
+        $template->create('index', [
+            'title' => 'ぶたのみそづけ',
+            'name' => 'ぶた'
+        ])
     ];
 };
 
