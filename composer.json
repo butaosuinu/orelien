@@ -2,6 +2,11 @@
     "name": "butaosuinu/orelien",
     "description": "orelien is simple web flamework.",
     "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ]
+    },
     "require": {
         "php": "^7.3",
         "ext-intl": "^7.3",
