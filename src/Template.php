@@ -20,16 +20,23 @@ class Template
         $this->params = $params;
     }
 
+    /**
+     * @return void
+     */
     public function render()
     {
         extract($this->params);
         include $this->file;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         ob_start();
         $this->render();
-        return ob_get_clean();
+        $dist = ob_get_clean();
+        return $dist ? $dist : '';
     }
 }
